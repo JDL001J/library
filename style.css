@@ -1,0 +1,73 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#container{
+    display: flex;
+ 
+  
+  height: 100vh;
+   width: 100%;
+}
+
+#form{
+    width: 30%;
+    height: 100vh;
+    background-color: aquamarine;
+}
+
+#deck{
+    width: 70%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) ;
+    justify-items: center;
+    overflow-y: scroll;
+    background-color: red;
+}
+
+.card{
+    border: 2px solid black;
+    height: 200px;
+    width: 300px;
+    margin: 40px;
+}
+
+
+@media (max-width: 1050px) {
+
+    #container{
+    display: flex;
+    flex-direction: column;
+ }
+ #form{
+    width: 100%;
+    height: 500px;
+   
+}
+
+#deck{
+    width: 100%;
+   
+   
+}
+
+}
+
+
+@media (max-width: 734px ){
+
+#deck {
+    grid-template-columns: 1fr;
+}
+
+.card{
+    width: 75%;
+    height: 300px;
+
+}
+
+
+
+}
