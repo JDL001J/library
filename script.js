@@ -14,7 +14,7 @@ function Book(title, author, pages, read){
     this.read = read;
 
     this.info = function(){
-        return `${this.title}`
+        return `${this.title} is by ${this.author} and is ${this.pages} pages long and is ${this.read}`
     }
 }
 
@@ -22,30 +22,45 @@ function Book(title, author, pages, read){
 
 function addBookToLibrary(book){
     myLibrary.push(book);
-
-  
-
+    displayLibrary()
 }
+
+function clearDeck(){
+    while (deck.firstChild) {
+        deck.removeChild(deck.lastChild);
+      }
+    }
 
 
 function displayLibrary(){
-    myLibrary.forEach(card => {
+    clearDeck()
+        myLibrary.forEach((elm, i) => {
         card = document.createElement("div");
         card.classList.add("card");
-        text = document.createTextNode('title');
+        info = elm.info();
+        text = document.createTextNode(`${i + 1} ${info}`);
         card.appendChild(text)
         deck.appendChild(card);
     });
 }
 
+function createCard(book){
+
+}
+
 
 book1 = new Book("1984","Orwell", 300, "read");
 book2 = new Book("Fahrenheit 451", "Bradbury", 300, "read");
+book3 = new Book("sadfdfas", "jon", 300, "not read");
 addBookToLibrary(book1);
 addBookToLibrary(book2);
+addBookToLibrary(book3);
 
-console.log(book1.info)
-displayLibrary()
+
+
+
+  
+  
 
 
 
