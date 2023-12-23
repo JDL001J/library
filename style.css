@@ -11,12 +11,61 @@
    width: 100%;
 }
 
-#form{
-    width: 30%;
+#form-container{
+   
+    width: 35%;
     height: 100vh;
     background-color: aquamarine;
 }
 
+#form{
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.input-box{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+ 
+    
+}
+input{
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: larger;
+    margin: 20px;
+}
+
+#read-box{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+label{
+   font-size: x-large;
+}
+#read{
+    width: 30px;
+}
+#submit-container{
+    display: flex;
+    justify-content: center;
+    grid-column: 1/3;
+}
+#submit{
+    width: 80px;
+    border-radius: 20px;
+   
+}
 #deck{
     width: 70%;
     height: 100vh;
@@ -24,24 +73,37 @@
     grid-template-columns: repeat(2, 1fr) ;
     justify-items: center;
     overflow-y: scroll;
-    background-color: red;
+    background-color:aliceblue;
 }
 
 .card{
-    border: 2px solid black;
+    display: flex;
+    border: 5px solid black;
     height: 200px;
     width: 300px;
     margin: 40px;
+    background-color: rgb(104, 175, 237);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: xx-large;
+    border-radius: 20px;
 }
-
-
-@media (max-width: 1050px) {
+.trash{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+h1{
+    text-align: center;
+}
+@media (max-width: 1350px) {
 
     #container{
     display: flex;
     flex-direction: column;
  }
- #form{
+ #form-container{
     width: 100%;
     height: 500px;
    
@@ -56,7 +118,7 @@
 }
 
 
-@media (max-width: 734px ){
+@media (max-width: 840px ){
 
 #deck {
     grid-template-columns: 1fr;
@@ -70,4 +132,25 @@
 
 
 
+}
+
+
+@media (max-width:500px) {
+    
+    #form{
+
+        
+        grid-template-columns: 1fr ;
+        grid-template-rows: repeat(4, 1fr);
+    }
+input{
+    margin: 5px;
+}
+
+h1{
+    font-size: x-large;
+}
+.card{
+    height: 200px;
+}
 }
