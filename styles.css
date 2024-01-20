@@ -23,13 +23,16 @@ margin: 0;
 #library{
     background-color: azure;
     height: 100%;
-};
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
 .card {
-    height: 800px;
-    width: 100px;
+    height: 200px;
+    border: 2px solid black;
+    width: 100%;
     background-color:rgb(255, 106, 0) ;
    
-};
+}
 
 
  #dialog::backdrop{
