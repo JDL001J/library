@@ -1,47 +1,61 @@
 
-const dialog = document.querySelector("#dialog");
-const closeBtn = document.getElementById("close");
-const bookShelf = document.getElementById("library");
+
+
+const libraryContainer = document.querySelector("#library");
 
 const myLibrary = [];
-
-function Book(title, author) {
+// book constructor
+function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
+  this.pages = pages;
+  this.read = read;
  
 };
+// adding book to library
+function addBook(){
+title = document.querySelector("#title").value;
+author = document.querySelector("#title").value;
+pages = document.querySelector("#pages").value;
+read = document.querySelector("#read").value;
+  book = new Book(title, author, pages, read);
+  myLibrary.push(book)
+console.log(myLibrary)
+}
 
-function addBookToLibrary() {
-  title = document.getElementById("title");
- author = document.getElementById("author");
-book = new Book(title.value, author.value);
-myLibrary.push(book)
-};
+
+// login fro display with modal
+
+const dialog = document.querySelector("#dialog");
 
 const loginForm = document.querySelector("#book-sub");
 
 loginForm.addEventListener("submit", (e) => {
+
   e.preventDefault();
- addBookToLibrary();
- clearShelf();
-displayLib();
+  addBook()
+  renderLibrary()
  
 });
+// populating dom
 
-function clearShelf(){
-  const divs = Array.from(document.querySelectorAll(".card"));
+// need function tp clear library before populatig it
 
- divs.forEach((elm) =>{
-  bookShelf.remove(elm);
- })
- 
+// render --  how to render without havign duplicates
+function renderLibrary(){
+
 }
 
+
+// modal show and close
 const btn = document.querySelector("#btn");
 
 btn.addEventListener("click", ()=>{
 dialog.showModal()
 });
+
+const closeBtn = document.querySelector("#close");
+
 closeBtn.addEventListener("click", ()=>{
     dialog.close()
     });
@@ -52,20 +66,17 @@ closeBtn.addEventListener("click", ()=>{
 
 
 
-// need function tp clear library before populatig it
-function displayLib(){
-  
-  myLibrary.forEach((elm, i)=> {
-    card = document.createElement('div');
-     card.textContent = `${elm.title}`;
-   bookShelf.appendChild(card);
-    card.classList.add("card");
-   
-  });
-  console.log(bookShelf);
-  console.log(myLibrary)
- 
-}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
