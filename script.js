@@ -1,8 +1,3 @@
-
-
-
-const libraryContainer = document.querySelector("#library");
-
 const myLibrary = [];
 // book constructor
 function Book(title, author, pages, read) {
@@ -10,75 +5,81 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
- 
-};
-// adding book to library
-function addBook(){
-title = document.querySelector("#title").value;
-author = document.querySelector("#title").value;
-pages = document.querySelector("#pages").value;
-read = document.querySelector("#read").value;
-  book = new Book(title, author, pages, read);
-  myLibrary.push(book)
-console.log(myLibrary)
+}
+// creates and returns unique book
+function addBookToLibrary() {
+  const title = document.querySelector("#title").value;
+  const author = document.querySelector("#author").value;
+  const pages = document.querySelector("#pages").value;
+  const read = document.querySelector("#read").value;
+  const book = new Book(title, author, pages, read);
+
+  myLibrary.push(book);
 }
 
-
-// login fro display with modal
-
-const dialog = document.querySelector("#dialog");
-
-const loginForm = document.querySelector("#book-sub");
-
-loginForm.addEventListener("submit", (e) => {
-
+document.querySelector("#book-sub").addEventListener("submit", (e) => {
   e.preventDefault();
-  addBook()
-  renderLibrary()
- 
+  addBookToLibrary();
+  renderLibrary();
 });
 // populating dom
 
-// need function tp clear library before populatig it
+function renderLibrary(book) {
+  clearLibrary(document.querySelector("#library"));
 
-// render --  how to render without havign duplicates
-function renderLibrary(){
+  myLibrary.forEach((book, i) => {
+    let card = createCard(book, i);
 
+    document.querySelector("#library").appendChild(card);
+  });
 }
 
+function clearLibrary(container) {
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+}
+
+function remove(i) {
+  document
+    .querySelector("#library")
+    .removeChild(document.getElementById(`${i}`));
+  myLibrary.splice(i);
+}
+
+function createCard(book, i) {
+  card = document.createElement("div");
+  card.setAttribute("class", "card");
+  card.setAttribute("id", i);
+  btn = document.createElement("button");
+  btn.textContent = "remove";
+  btn.addEventListener("click", () => {
+    remove(i);
+  });
+  card.appendChild(btn);
+
+  divTitle = document.createElement("div");
+  divTitle.textContent = `Title: ${book.title}`;
+  card.appendChild(divTitle);
+  divAuthor = document.createElement("div");
+  divAuthor.textContent = `Author: ${book.author}`;
+  card.appendChild(divAuthor);
+  divPages = document.createElement("div");
+  divPages.textContent = `Pages: ${book.pages}`;
+  card.appendChild(divPages);
+  divRead = document.createElement("div");
+  divRead.textContent = `Have Read?: ${book.read}`;
+  card.appendChild(divRead);
+
+  return card;
+}
 
 // modal show and close
-const btn = document.querySelector("#btn");
-
-btn.addEventListener("click", ()=>{
-dialog.showModal()
+const dialog = document.querySelector("#dialog");
+document.querySelector("#btn").addEventListener("click", () => {
+  dialog.showModal();
 });
 
-const closeBtn = document.querySelector("#close");
-
-closeBtn.addEventListener("click", ()=>{
-    dialog.close()
-    });
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+document.querySelector("#close").addEventListener("click", () => {
+  dialog.close();
+});
